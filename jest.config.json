@@ -1,0 +1,39 @@
+{
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
+  "moduleNameMapper": {
+    "^@module/(.*)$": "<rootDir>/src/modules/$1",
+    "^@config/(.*)$": "<rootDir>/src/config/$1",
+    "^@utils/(.*)$": "<rootDir>/src/utils/$1",
+    "^@dtos/(.*)$": "<rootDir>/src/dtos/$1",
+    "^@mocks/(.*)$": "<rootDir>/src/mocks/$1"
+  },
+  "testRegex": ".*\\.spec\\.ts$",
+  "transform": {
+    "^.+\\.ts$": "ts-jest"
+  },
+  "collectCoverageFrom": [
+    "<rootDir>/src/**/*.ts"
+  ],
+  "coveragePathIgnorePatterns": [
+    ".module.ts",
+    ".dto.ts",
+    "<rootDir>/src/main.ts",
+    "<rootDir>/src/config",
+    "<rootDir>/src/mocks",
+    ".mock.ts",
+    ".enum.ts",
+    ".decorator.ts",
+    ".mock.ts"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "lines": 100
+    }
+  },
+  "coverageDirectory": "<rootDir>/coverage/",
+  "testEnvironment": "node"
+}

@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  nestjs-kafka-template:
+    image: node:20.11.0-alpine
+    command: yarn start:dev
+    ports:
+      - '3001:3001'
+    working_dir: /app
+    env_file: .env
+    volumes:
+      - .:/app
+
+  redpanda-console:
+    container_name: kafka-playground-redpanda-console
+    image: docker.redpanda.com/redpandadata/console:latest
+    entrypoint: /bin/sh
+    command: -c 'echo "$$CONSOLE_CONFIG_FILE" > /tmp/config.yml; /app/console'
+    environment:
+      CONFIG_FILEPATH: /tmp/config.yml
+      CONSOLE_CONFIG_FILE: |
+        kafka:
+          brokers: ["b-1.talentsstaging.a03vla.c20.kafka.us-east-1.amazonaws.com:9092","b-2.talentsstaging.a03vla.c20.kafka.us-east-1.amazonaws.com:9092"]
+    ports:
+      - 8080:8080
+
+volumes:
+  postgres:
+    driver: local
